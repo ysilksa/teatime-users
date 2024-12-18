@@ -27,7 +27,7 @@ const pool = new Pool({
 // protocol type get 
 // when we load up the api, we get the message 
 // YOU SHOULD DOWNLOAD POSTMAN, very easy way to test your api 
-// refer back to video 2 for this 
+// refer back to part 2 of workshop 7 for this 
 app.get("/", (req, res) => {
     res.json({ message: "HELLO WORLD!" });
   });
@@ -44,3 +44,12 @@ app.get("api/users", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch users "});
     }
 });
+
+// to start the app, refer to part 3 of workshop 7
+// PORT is where the app lives in 
+const PORT = process.env.PORT || 3030;
+app.listen(PORT, () => { // app listens on this port
+    console.log(`Server running on post ${PORT}`);
+});
+
+export default app; 
