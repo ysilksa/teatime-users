@@ -1,8 +1,7 @@
-import express from "express";
-import cors from "cors"; // acts as a middleman between front and back end, need it to allow someone outside to access the db
-import { Pool, Query } from "pg";
-import dotenv from "dotenv";
-
+const express = require("express");
+const cors = require("cors");
+const { Pool } = require("pg");
+require("dotenv").config();
 
 // typescript = javascript, but you add types to your code
 
@@ -33,10 +32,10 @@ app.get("/", (req, res) => {
   });
   
 // this is a good example of writing your requests
-app.get("api/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
     try {
-        const result = await pool.query<User>(
-            "SELECT * FROM users ORDER BY id ASC" // our query
+        const result = await pool.query(
+            "SELECT * FROM users ORDER BY id ASC;" // our query
         ); 
         res.json(result.rows); // return json of results and the rows
     } catch (err) {
@@ -52,4 +51,4 @@ app.listen(PORT, () => { // app listens on this port
     console.log(`Server running on post ${PORT}`);
 });
 
-export default app; 
+module.exports = app; 
